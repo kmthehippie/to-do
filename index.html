@@ -3,191 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
+    <title>TO DO DODODODODOODODODO COME ON</title>
 
-    <!-- links and scripts here -->
-    <script type="module" src="index.js" defer></script>
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="index.js" defer></script>
 
-    <!-- icon links here -->
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-thin-rounded/css/uicons-thin-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
+
 </head>
 <body>
-    <div class="main-container">
-        <header>
-            <div class="logo">
-                <a href="">doDoDO</a> 
+    <header>
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-img">
+                        <i class='fi fi-sr-rectangle-list'></i>
+                    </div>
+                    <div class="logo-text">
+                        <a href="">DoJustDo</a>
+                    </div>
+                </div>
+                <nav>
+                    <div class="nav all">  ALL  </div>
+                    <div class="nav today">TODAY</div>
+                    <div class="nav projects">PROJECT</div>
+                </nav>
+                <div class="right-header-div">
+                    <div class="add-task">+</div>
+                    <div class="profile">
+                        <i class="fi fi-sr-user"></i>
+                    </div>
+                </div>
+                
             </div>
-            <div class="nav-bar">
-                <div class="burger inactive"><i class="fi fi-bs-menu-burger"></i></div>      
-                <ul class="nav-btns">            
-                    <li class="nav active">ALL</li>
-                    <li class="nav ">TODAY</li>
-                    <li class="nav ">PROJECTS</li>
-                </ul>
-            </div>
-            <div class="nav-profile">
-                <ul>
-                    <li class="ld light OFF inactive"><i class="fi fi-rs-sun"></i></li>
-                    <li class="ld light ON active"><i class="fi fi-ss-sun"></i></li>
-                    <li class="ld dark OFF inactive"><i class="fi fi-ss-moon"></i></li>
-                    <li class="ld dark ON "><i class="fi fi-bs-moon"></i></li>
+    </header>
 
-                    <li class="add">+</li>
-                    <li class="user"><i class="fi fi-sr-user"></i></li>
-                    <li class="user inactive"><i class="fi fi-rr-user"></i></li>
-                </ul>
-            </div>
-        </header>
-
-        <div class="content">
-            <div class="main-content ">
-            <div class="date today">
-                <h3 class="date-header">Today</h3>
-                <div class="card item1">
-                    <div class="checkbox">
-                        <span class="square"><i class="fi fi-tr-square"></i></span>
-                        <span class="check "><i class="fi fi-br-check"></i></span>
-                    </div>
-                    
-                    <div class="todo-text">This is item1 to do</div>
-                </div>
-                <div class="card item2">
-                    <div class="checkbox">
-                        <span class="square"><i class="fi fi-tr-square"></i></span>
-                        <span class="check inactive"><i class="fi fi-br-check"></i></span>
-                    </div>
-                    
-                    <div class="todo-text">This is item2 to do</div>
-                </div>
-                <div class="card item3">
-                    <div class="checkbox">
-                        <span class="square"><i class="fi fi-tr-square"></i></span>
-                        <span class="check inactive"><i class="fi fi-br-check"></i></span>
-                    </div>
-                    
-                    <div class="todo-text">This is item3 to do</div>
-                </div>
-            </div>
-            <div class="date upcoming">
-                <h3 class="date-header">Upcoming</h3>
-                <div class="card item1">
-                    <div class="checkbox">
-                        <span class="square"><i class="fi fi-tr-square"></i></span>
-                        <span class="check "><i class="fi fi-br-check"></i></span>
-                    </div>
-                    
-                    <div class="todo-text">This is item1 to do</div>
-                </div>
-                <div class="card item2">
-                    <div class="checkbox">
-                        <span class="square"><i class="fi fi-tr-square"></i></span>
-                        <span class="check inactive"><i class="fi fi-br-check"></i></span>
-                    </div>
-                    
-                    <div class="todo-text">This is item2 to do</div>
-                </div>
-                <div class="card item3">
-                    <div class="checkbox">
-                        <span class="square"><i class="fi fi-tr-square"></i></span>
-                        <span class="check inactive"><i class="fi fi-br-check"></i></span>
-                    </div>
-                    
-                    <div class="todo-text">This is item3 to do</div>
-                </div>
-            </div>
-            </div>
+    <div class="main-content">
+        <!-- Filter arrangements -> nav buttons here -->
+        <div class="all-page"></div>
+        <div class="today-page"></div>
+        <div class="project-page"></div>
+        <!-- All pop-ups and modals go here -->
+        <div class="modal">
+            <div class="task-modal"></div>
+            <div class="notes-modal"></div>
+            <div class="subtask-modal"></div>
+            <div class="cancel-modal"></div>
         </div>
-
-        <div class="modal-bg inactive">
-            <div class="new-task ">
-                <form>
-                    <div class="input-wrap">
-                    <!-- task name + description -->
-                        <input type="text" id="task-name"  class="input-field" required>
-                        <label for="task-name">Task Name</label>
-                    </div>
-                    <div class="input-wrap">
-                        <input type="textarea" id="desc"  class="input-field">
-                        <label for="desc" class="desc">Description</label>
-                    </div>
-
-                    <div class="duedate-priority">
-                        <div class="due-date">
-                        <!-- duedate + priority -->
-                        <input type="datetime-local" id="due-date" class="input-field due-input">
-                        </div>
-                        <div class="open notes">
-                            <i class="fi fi-sr-memo-pad"></i>
-                        </div>
-                        <div class="open subtask">
-                            <i class="fi fi-bs-list-check"></i>
-                        </div>
-                        <div class="priority">
-                            <span class="text">Priority</span>
-                            <div class="stars-div">
-                            <span class="stars one checked"><i class="fi fi-sr-star"></i></span>
-                            <span class="stars two"><i class="fi fi-sr-star"></i></span>
-                            <span class="stars three"><i class="fi fi-sr-star"></i></span>
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    <div class="submission">
-                    <button class="cancel ">CANCEL</button>
-                    <button type="submit" class="add-task">ADD TASK</button>
-                    </div>
-
-                </form>
-            </div>
-            <div class="notes-pop-out inactive">
-                <div class="header-notes">
-                    <div class="notes-icon"><i class="fi fi-sr-memo-pad"></i></div>
-                    <h3>Notes</h3>
-                </div>
-                <textarea name="notes" id="notes" cols="30" rows="10" placeholder="Enter your notes here..."></textarea>
-                <div class="submission">
-                    <button class="cancel notes">CANCEL</button>
-                    <button type="submit" class="add-notes notes">ADD NOTES</button>
-                </div>
-            </div>
-            <div class="subtask-pop-out inactive">
-                <div class="header-subtask">
-                    <div class="subtask-icon"><i class="fi fi-bs-list-check"></i></div>
-
-                    <h3>Subtask</h3>
-                </div>
-                <div class="subtask-generated"></div>
-                <div class="add-new"> + </div>
-                <div class="submission">
-                    <button class="cancel subtask">CANCEL</button>
-                    <button type="submit " class="add-subtask subtask">ADD SUBTASK</button>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <ul>
-                <li>
-                    Another fun thing by KM
-                </li>
-                <li>Att: </li>
-                <li>
-                    Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
-                </li>
-            </ul>          
-        </footer>
     </div>
+
+    <footer>
+        <ul>
+            <li>I can do this!!! --KM</li>
+            <li></li>
+        </ul>
+    </footer>
+
+    <!-- Template for a RENDER: Task -->
+    <template id="taskTemplate">
+        <div class="task-card">
+            <div class="task">
+                <div class="left-card ">
+                        <div class="checkbox-icon">
+                            <span class="square">
+                                <i class="fi fi-rr-square"></i>
+                            </span>
+                            <span class="square-checked">
+                            </span>
+                        </div>
+                        <div class="task-name"> </div>
+                </div>
+                <div class="right-card">
+                    <span class="stars">
+                    </span>
+                </div>
+                <div class="st"></div>
+            </div>
+        </div>
+    </template>
     
+    <!-- to add empty stars, use <i class="fi fi-rr-star"></i> -->
+    <!-- to add full stars, use <i class="fi fi-sr-star"></i> -->
+    <!-- to add checked, use <i class="fi fi-br-check"></i> -->
+    <!-- to add strikethrough, use div class st (need to add whole div or remove whole div) -->
+    <!-- add subtask and notes as sibling to task and child to task-card -->
+    
+    <!-- Template for RENDER: Notes in task (Don't show unless click more...inactive for notes-card, close-notes, notes-text) push text into notes-text-->
+    <template id="notesTemplate">
+        <div class="notes-card inactive">
+            <a href="">Notes...</a>
+            <div class="close-notes inactive">x</div>
+            <div class="notes-text inactive">
+            </div>
+        </div>
+    </template>
+    
+    <!-- Template for a RENDER: Subtask in task-->
+    <template id="subtaskTemplate">
+        <div class="subtask-card">
+            <div class="task">
+                <div class="left-card ">
+                        <div class="checkbox-icon">
+                            <span class="square">
+                                <i class="fi fi-rr-square"></i>
+                            </span>
+                            <span class="square-checked">
+                            </span>
+                        </div>
+                        <div class="task-name"></div>
+                </div>
+                <div class="right-card">
+                    <span class="stars">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </template>
+   
+    <!-- Template for INPUT: task-modal-->
+    <!-- Template for INPUT: notes-modal -->
+    <!-- Template for INPUT: subtask-modal -->
+
+
 </body>
-</html> 
+</html>
