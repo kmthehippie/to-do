@@ -27,7 +27,7 @@ export const closeCancelBtn = function(){
     })
 }
 
-const closeFn = function (){
+export const closeFn = function (){
     const modal = document.querySelector(".modal")
     let length = modal.children.length -1;
     let divToRemove = modal.children[length];
@@ -81,3 +81,16 @@ export const formInput = {
     }
 }
 
+
+
+// add el to checkbox -- 
+// TOGGLE TICK BOX AND ADD LINETHROUGH. AFTER ADDED. ITEM WILL BE DELETED ONCE PAGE REFRESH. NOT CHANGE ON SHOW.
+export const toggleCheckBox = () => {
+    let checkbox = document.querySelector(".checkbox-icon");
+    checkbox.addEventListener("click", toggleTick);
+    const toggleTick = function() {
+        // !!!! STOPPED HERE!!!!!!!/////
+        let squareChecked = document.querySelector("square-checked");
+        squareChecked.innerHTML = "<i class='fi fi-br-check'></i>";
+    }
+}

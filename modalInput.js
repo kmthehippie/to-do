@@ -1,5 +1,6 @@
-import { starsArr, makeInputPretty, closeCancelBtn, submitAddTaskBtn, formInput } from "./input.js";
+import { makeInputPretty, closeCancelBtn, closeFn, formInput } from "./input.js";
 import { pubsub } from "./pubsub.js";
+import { renderAddedItemsOnSubtask } from "./render.js";
 
 
 export let addTask = function(){
@@ -11,6 +12,7 @@ export let addTask = function(){
 const newTaskModal = {
 priorityInput: [0],
 notesInput: [],
+subtaskInput: [],
 render: () =>{
     let modal = document.querySelector(".modal");
     let template = document.getElementById("newtask-modal-template");
@@ -26,7 +28,7 @@ render: () =>{
     newTaskModal.addSubtask();
     
     closeCancelBtn();
-    submitAddTaskBtn();
+    // submitAddTaskBtn();
 },
 add: ev =>{
     ev.preventDefault();
@@ -37,7 +39,7 @@ add: ev =>{
     let taskPriority = newTaskModal.priorityInput[0];
     let taskCategory;
     let taskNotes = newTaskModal.notesInput[0];
-    let taskSubtasks;
+    let taskSubtasks = newTaskModal.subtaskInput[0];
     let inputs = document.querySelectorAll(".input-field");
     inputs.forEach(input => {
         if (input.id === "task-name-input"){
@@ -113,7 +115,6 @@ starsArr: () => {
 },
 addNotes: () => {
     const notesBtn = document.querySelector(".notes-btn");
-    
     const newNotesModal = function () {
         let modal = document.querySelector(".modal");
         let template = document.getElementById("notes-modal-template");
@@ -122,7 +123,6 @@ addNotes: () => {
         closeCancelBtn();
         newTaskModal.addNotesBtn();
     }
-    
     notesBtn.addEventListener("click", newNotesModal);
     
 },
@@ -147,11 +147,49 @@ addSubtask: () => {
         let div = template.content.cloneNode(true);
         modal.append(div);
         closeCancelBtn();
+        newTaskModal.addNewSubtask();
         }
     subtaskBtn.addEventListener("click", newSubtaskModal);   
 },
 addNewSubtask: () => {
-    makeInputPretty();
+    let addNewDiv = document.querySelector(".add-new");
+    const newAddSTModal = function() {
+        let modal = document.querySelector(".modal");
+        let template = document.getElementById("addnew-subtask-template");
+        let div = template.content.cloneNode(true);
+        modal.append(div);
+        makeInputPretty();
+        closeCancelBtn();
+        newTaskModal.addNewSubtaskInput();
+    }
+    addNewDiv.addEventListener("click", newAddSTModal);
+},
+addNewSubtaskInput: () => {
+    let submitBtn = document.querySelector(".submit-subtask-btn");
+    submitBtn.addEventListener("click", newTaskModal.addS);
+
+},
+addS: ev =>{
+    ev.preventDefault();
+    ev.stopPropagation();
+    let taskName;
+    let taskDesc;
+    let inputs = document.querySelectorAll(".input-field");
+    inputs.forEach(input => {
+        if (input.id === "subtask-name-input"){
+            taskName = input.value;
+        } else if (input.id === "subtask-desc-input"){
+            taskDesc = input.value;
+        }
+    })
+    const obj = {
+        taskName, taskDesc
+    }
+    newTaskModal.subtaskInput.push(obj)
+    closeFn();
+    renderAddedItemsOnSubtask(taskName, taskDesc);
+    
 }
+
 }
 

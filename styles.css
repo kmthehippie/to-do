@@ -480,6 +480,11 @@ textarea:focus{
 .subtask-modal.inactive{
     display: none;
 }
+.lineTwo .desc-name{
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    font-family: var(--roboto-font);
+}
 
 /* ----------------------- PROJECT MODAL------------------------ */
 .project-modal{
@@ -537,6 +542,7 @@ textarea:focus{
 }
 /* ---------------------ADD NEW SUBTASK MODAL------------------- */
 .addnew-subtask-modal{
+    height: 300px;
     width: 500px;
     position: absolute;
     top: 25%;
@@ -546,6 +552,9 @@ textarea:focus{
     color: var(--pale-gray);
     padding: 2rem;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .addnew-subtask-modal h3{
     font-size: 1.3rem;
@@ -554,6 +563,10 @@ textarea:focus{
 .addnew-subtask-modal-btm{
     margin-top: 1rem;
 }
+.addnew-subtask-modal-btm .submit-subtask-btn{
+    width: 90px;
+}
+
 /* -------------------------MEDIA QUERY------------------------- */
 
 @media (width > 600px){

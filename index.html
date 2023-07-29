@@ -45,41 +45,7 @@
         <div class="today-page"></div>
         <div class="project-page"></div>
         <!-- All pop-ups and modals go here -->
-        <div class="modal ">
-            <div class="addnew-subtask-modal">
-                <form>
-                    <div class="addnew-subtask-modal-top">
-                        <div class="close ">x</div>
-                        <h3>New Task</h3>
-                        <div class="input-wrap">
-                            <input 
-                            type="text"
-                            id="task-name-input"
-                            class="input-field"
-                            required/>
-                            <label for="task-name-input">
-                                Task Name
-                            </label>
-                        </div>
-                        <div class="input-wrap">
-                            <input 
-                            type="textarea"
-                            id="desc-input"
-                            class="input-field">
-                            <label for="desc-input">
-                                Description
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="addnew-subtask-modal-btm">
-                        <div class="submission">
-                            <button class="cancel ">CANCEL</button>
-                            <button class="submit-task-btn">ADD TASK</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div class="modal inactive">
         </div>
     </div>
 
@@ -316,7 +282,7 @@
                     <div class="input-wrap">
                         <input 
                         type="text"
-                        id="task-name-input"
+                        id="subtask-name-input"
                         class="input-field"
                         required/>
                         <label for="task-name-input">
@@ -326,7 +292,7 @@
                     <div class="input-wrap">
                         <input 
                         type="textarea"
-                        id="desc-input"
+                        id="subtask-desc-input"
                         class="input-field">
                         <label for="desc-input">
                             Description
@@ -337,14 +303,33 @@
                 <div class="addnew-subtask-modal-btm">
                     <div class="submission">
                         <button class="cancel ">CANCEL</button>
-                        <button class="submit-task-btn">ADD TASK</button>
+                        <button class="submit-subtask-btn">ADD</button>
                     </div>
                 </div>
-                
             </form>
         </div>
     </template>
-   
+   <!-- Template for SUBTASK INSIDE SUBTASK -->
+   <template id="subtask-subtask-template">
+    <div class="subtask-card">
+        <div class="left-card ">
+                <div class="lineOne">
+                    <div class="checkbox-icon">
+                        <span class="square">
+                            <i class="fi fi-rr-square"></i>
+                        </span>
+                        <span class="square-checked">
+                        </span>
+                    </div>
+                </div>
+                <div class="lineTwo">
+                <div class="task-name"></div>
+                <div class="desc-name"></div>
+                </div>
+                
+        </div>  
+    </div>
+</template>
 
 </body>
 </html>
