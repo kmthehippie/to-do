@@ -366,6 +366,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 .project-name select{
     background: none;
     border: none;
+    width: 100%;
     color: var(--pale-gray);
     font-size: 1rem;
     padding-right: 1rem;
@@ -397,7 +398,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 .notes-modal{
     width: 500px;
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--gray);
@@ -437,8 +438,9 @@ textarea:focus{
     display: none;
 }
 
-/* --------------------------NOTES MODAL------------------------ */
+/* -------------------------SUBTASK MODAL------------------------ */
 .subtask-modal{
+    min-height: 300px;
     width: 500px;
     position: absolute;
     top: 25%;
@@ -448,6 +450,9 @@ textarea:focus{
     color: var(--pale-gray);
     padding: 2rem;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .header-subtask{
     display: flex;
@@ -530,7 +535,25 @@ textarea:focus{
     font-size: 1.25rem;
     margin-bottom: 2rem;
 }
-
+/* ---------------------ADD NEW SUBTASK MODAL------------------- */
+.addnew-subtask-modal{
+    width: 500px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--gray);
+    color: var(--pale-gray);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.addnew-subtask-modal h3{
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+.addnew-subtask-modal-btm{
+    margin-top: 1rem;
+}
 /* -------------------------MEDIA QUERY------------------------- */
 
 @media (width > 600px){

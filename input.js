@@ -13,56 +13,39 @@ export const makeInputPretty = function() {
     })
 }
 
-// Priority Input 
-export const starsArr = function(){
-    const stars = document.querySelectorAll(".star");
-    let priorityInput = [0];
-    stars.forEach((star) =>{
-        star.addEventListener("click", ()=>{
-            if (star.classList[0] === "one") {
-                priorityInput.pop();
-                priorityInput.push(1);
-                ColorStars(star);
-            } else if (star.classList[0] === "two"){
-                priorityInput.pop();
-                priorityInput.push(2);
-                ColorStars(star);
-            } else if (star.classList[0] === "three"){
-                priorityInput.pop();
-                priorityInput.push(3);
-                ColorStars(star);
-            }
-        console.log(priorityInput);
-        return  priorityInput
-        })        
+
+
+//JS for cancelling and closing pages. Still need to render the template for "Are you sure you want to discard"
+export const closeCancelBtn = function(){
+    const closeBtns= document.querySelectorAll(".close");
+    const cancelBtns = document.querySelectorAll(".cancel");
+    closeBtns.forEach(btn =>{
+        btn.addEventListener("click", closeFn )
+    })
+    cancelBtns.forEach(btn => {
+        btn.addEventListener("click", closeFn)
     })
 }
-const ColorStars = function(star){
-    const star1 = document.querySelector(".one");
-    const star2 = document.querySelector(".two");
-    const star3 = document.querySelector(".three");
-    if (star.classList[0] === "one") {
-        star1.classList.remove("fi-rr-star");
-        star1.classList.add("fi-sr-star");
-        star2.classList.remove("fi-sr-star");
-        star2.classList.add("fi-rr-star");
-        star3.classList.remove("fi-sr-star");
-        star3.classList.add("fi-rr-star");
-    } else if(star.classList[0] === "two"){
-        star1.classList.remove("fi-rr-star");
-        star1.classList.add("fi-sr-star");
-        star2.classList.remove("fi-rr-star");
-        star2.classList.add("fi-sr-star");
-        star3.classList.remove("fi-sr-star");
-        star3.classList.add("fi-rr-star");
-    }else if(star.classList[0] === "three"){
-        star1.classList.remove("fi-rr-star");
-        star1.classList.add("fi-sr-star");
-        star2.classList.remove("fi-rr-star");
-        star2.classList.add("fi-sr-star");
-        star3.classList.remove("fi-rr-star");
-        star3.classList.add("fi-sr-star");
-    }
+
+const closeFn = function (){
+    const modal = document.querySelector(".modal")
+    let length = modal.children.length -1;
+    let divToRemove = modal.children[length];
+    if (length === 0) {
+        modal.removeChild(divToRemove);
+        modal.classList.add("inactive");
+    } else {
+        modal.removeChild(divToRemove);
+    }    
+}
+
+//JS for ADD TASK BUTTON
+export const submitAddTaskBtn = function (){
+    let addTask = document.querySelector(".submit-task-btn");
+    addTask.addEventListener("click", (e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+    })
 }
 
 //Notes and Subtask Add EL
@@ -75,7 +58,7 @@ export const addListener = function(btn, fn){
 
 
 export const formInput = {
-    task: ({taskName, taskDesc, taskDueDate, taskPriority, taskCategory, taskNotes, taskSubtask}) => {
+    Task : function({taskName, taskDesc, taskDueDate, taskPriority, taskCategory, taskNotes, taskSubtask}) {
         this.taskName = taskName,
         this.taskDesc = taskDesc,
         this.taskDueDate = taskDueDate,
