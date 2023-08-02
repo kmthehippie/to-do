@@ -9,7 +9,7 @@ export let addTask = function(){
 }
 
 
-const newTaskModal = {
+export const newTaskModal = {
 priorityInput: [0],
 notesInput: [],
 subtaskInput: [],
@@ -28,7 +28,7 @@ render: () =>{
     newTaskModal.addSubtask();
     
     closeCancelBtn();
-    // submitAddTaskBtn();
+
 },
 add: ev =>{
     ev.preventDefault();
@@ -138,7 +138,8 @@ addNotesBtn: () => {
         notesModal.classList.add("inactive");
     }
     addNotesBtn.addEventListener("click", fn)
-},
+}
+,
 addSubtask: () => {
     const subtaskBtn = document.querySelector(".subtask-btn");
     const newSubtaskModal = function () {
@@ -151,6 +152,7 @@ addSubtask: () => {
         }
     subtaskBtn.addEventListener("click", newSubtaskModal);   
 },
+// Adding subtask modal
 addNewSubtask: () => {
     let addNewDiv = document.querySelector(".add-new");
     const newAddSTModal = function() {
@@ -161,13 +163,15 @@ addNewSubtask: () => {
         makeInputPretty();
         closeCancelBtn();
         newTaskModal.addNewSubtaskInput();
+        let subtaskModal = document.querySelector(".subtask-body");
+        subtaskModal.style.display = "none";
     }
     addNewDiv.addEventListener("click", newAddSTModal);
 },
+// Add subtask's subtask modal for input
 addNewSubtaskInput: () => {
     let submitBtn = document.querySelector(".submit-subtask-btn");
     submitBtn.addEventListener("click", newTaskModal.addS);
-
 },
 addS: ev =>{
     ev.preventDefault();
@@ -179,15 +183,19 @@ addS: ev =>{
         if (input.id === "subtask-name-input"){
             taskName = input.value;
         } else if (input.id === "subtask-desc-input"){
-            taskDesc = input.value;
-        }
+            if (input.value === "") {
+                taskDesc = "Empty"}
+            else {
+                taskDesc = input.value;
+            }
+        } 
     })
-    const obj = {
-        taskName, taskDesc
-    }
-    newTaskModal.subtaskInput.push(obj)
     closeFn();
     renderAddedItemsOnSubtask(taskName, taskDesc);
+    let subtaskModal = document.querySelector(".subtask-body");
+    subtaskModal.style.display = "block";
+    let obj = {taskName, taskDesc}
+    newTaskModal.subtaskInput.push(obj)
     
 }
 

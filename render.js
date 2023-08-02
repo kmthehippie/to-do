@@ -1,4 +1,4 @@
-import { toggleCheckBox } from "./input.js";
+import { removeSubtask } from "./input.js";
 
 // export const tasks = {
 //     list: [],
@@ -32,13 +32,7 @@ export const renderAddedItemsOnSubtask = (taskName, taskDesc) => {
         })
     }
     renderText(taskName, taskDesc);
-    const checkingBox = () => {
-        let checkbox = document.querySelector(".checkbox-icon");
-        const tickTheBox = function() {
-            let squareChecked = document.querySelector(".square-checked");
-            squareChecked.innerHTML = "<i class='fi fi-br-check'></i>";
-        }
-        checkbox.addEventListener("click", tickTheBox)
-    }
-    toggleCheckBox();
+    removeSubtask();
+
+    
 }

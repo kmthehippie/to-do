@@ -1,3 +1,4 @@
+import { newTaskModal } from "./modalInput.js";
 
 // JS to make the input pretty
 export const makeInputPretty = function() {
@@ -84,13 +85,73 @@ export const formInput = {
 
 
 // add el to checkbox -- 
-// TOGGLE TICK BOX AND ADD LINETHROUGH. AFTER ADDED. ITEM WILL BE DELETED ONCE PAGE REFRESH. NOT CHANGE ON SHOW.
+//THIS WAS USELESS AFTER I REALIZE I AM NOT SUPPOSE TO DO THIS. I JUST NEED A - SIGN.
+// TOGGLE TICK BOX AND ADD LINETHROUGH. AFTER ADDED. DONE
+//ITEM WILL BE DELETED ONCE PAGE REFRESH. NOT CHANGE ON SHOW.
 export const toggleCheckBox = () => {
-    let checkbox = document.querySelector(".checkbox-icon");
-    checkbox.addEventListener("click", toggleTick);
+    let stFirstLine = document.querySelector(".st-first-line");
     const toggleTick = function() {
-        // !!!! STOPPED HERE!!!!!!!/////
-        let squareChecked = document.querySelector("square-checked");
-        squareChecked.innerHTML = "<i class='fi fi-br-check'></i>";
-    }
+        // Adding check and strikethrough on subtask. listen for click.
+        let squareChecked = document.querySelector(".square-checked");
+        let div = document.createElement("div");
+        div.classList = "st";
+        if (squareChecked.innerHTML === "") {
+            console.log("empty");
+            console.log(squareChecked);
+            squareChecked.innerHTML = "<i class='fi fi-br-check'></i>"
+            stFirstLine.appendChild(div);
+        } else if(squareChecked.innerHTML !== ""){
+            let st = document.querySelector(".st")
+            console.log("not empty");
+            console.log(squareChecked);
+            squareChecked.innerHTML = ""
+            stFirstLine.removeChild(st)
+        }}
+    stFirstLine.addEventListener("click", toggleTick);
+}
+
+export const removeSubtask = function(){
+    let minus = document.querySelectorAll(".minus-remove-st");
+    const subtaskGen = document.querySelector(".subtask-generated");
+    // const delDiv = function(event){
+    //     console.log(event);
+    //     // if (currentDiv === selectedDiv){
+    //     //     then do the removal
+    //     // }
+    //     let a = event.srcElement.closest(".subtask-subtask-card")
+    //     let stGen = document.querySelector(".subtask-generated");
+    //     // let div = btn.closest(".subtask-subtask-card");
+    //     console.log(a);
+    //     console.log(newTaskModal.subtaskInput);
+        
+    //     console.log(index);
+    //     // 
+    //     // console.log(newTaskModal.subtaskInput);
+    //     // subtaskGen.removeChild(a);
+    //     // newTaskModal.subtaskInput
+    // }
+  
+// THIS IS NOT WORKING MAN... I THINK WE NEED TO SPLIT OUT THE ENTIRE PART FOR SUBTASK TO ANOTHER MODULE ALTOGETHER. ITS TOO MESSY AS IT IS RIGHT NOW. I CANT FIND ANYTHING. I CANT SUB OR PUB ANYTHING. MY - LOOPS MULTIPLE TIMES CAUSING MY FUNCTION TO FAIL.
+    minus.forEach(btn=>{
+        btn.addEventListener("click", function(e){
+            let stGen = document.querySelector(".subtask-generated");
+            let div = btn.closest(".subtask-subtask-card");
+            let index = Array.prototype.indexOf.call(stGen.children, div);
+            console.log(index);
+            
+            let arr = newTaskModal.subtaskInput;
+            console.log(arr);
+            let before = arr.slice(0, index);
+            let after = arr.slice(index+1, arr.length);
+            console.log(before, after);
+            let newArr = before.concat(after);
+            console.log(newArr);
+
+            newTaskModal.subtaskInput = newArr;
+            stGen.removeChild(div);
+
+            console.log(newTaskModal.subtaskInput);
+        })
+    })
+
 }

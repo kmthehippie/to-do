@@ -92,7 +92,7 @@ nav{
 .right-header-div{
     display: flex;
 }
-.add-task{
+.nav-add-task{
     font-size: 2rem;
     font-weight: 900;
     padding: 0rem 1rem;
@@ -101,7 +101,7 @@ nav{
     cursor: pointer;
     transition: 0.3s;
 }
-.add-task:hover{
+.nav-add-task:hover{
     color: var(--light-yellow);
     background-color: var(--gray);
 
@@ -121,6 +121,7 @@ nav{
 footer{
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -138,6 +139,29 @@ footer li{
 }
 
 /* ====================== MAIN-CONTENT ======================== */
+/* ----------------------DONE TASK CARDS----------------------- */
+
+
+.category{
+    margin-top: 1rem;
+    width: 100vw;
+}
+.category h2{
+    display: flex;
+    justify-content: center;
+    font-family: var(--logo-font);
+    margin: 1rem 0rem;
+}
+.done-task-card{
+    border: 1px solid var(--dark-yellow);
+    padding: 1rem;
+    margin: 0rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+    background-color: rgb(190, 190, 190);
+    box-shadow: 5px 5px 10px rgba(104, 104, 104, 0.678);
+    margin-bottom: 1rem;
+}
 
 /* -----------------------TASK CARDS--------------------------- */
 /* css for task */
@@ -149,23 +173,26 @@ footer li{
     border-radius: 1rem;
     position: relative;
     background-color: white;
-    box-shadow: 5px 5px rgba(255, 255, 255, 0.678);
+    box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.678);
     margin-bottom: 1rem;
 }
-.task{
+.main-task{
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
 }
+/* strikethrough */
 .st{
     background-color: var(--black);
     width: 100%;
-    height: 1px;
+    height: 2px;
     z-index: 100;
     position: absolute;
     top: 45%;
-
+}
+.st.inactive{
+    display: none;
 }
 .left-card{
     display: flex;
@@ -179,6 +206,9 @@ footer li{
     font-size: 1.5rem;
     color:var(--dark-yellow);
 }
+.square-checked.inactive{
+    display: none;
+}
 .stars {
     color: var(--dark-yellow);
     cursor: pointer;
@@ -187,20 +217,37 @@ footer li{
     font-family: var(--roboto-font);
     margin-left: 1.5rem;
 }
-.subtask-card{
+
+/* ----------------------NOTES CARD --------------------------- */
+.ncm-text{
     margin-top: 0.5rem;
-    margin-left: 1.5rem;
+}
+.ncm-text.inactive{
+    display: none;
+}
+.notes-card a{
+    font-size: 1.15rem;
+    text-decoration: none;
+    color: var(--dark-yellow);
+    transition: 0.3s;
+    padding: 1.5rem;
+}
+.notes-card a:hover{
+    color: var(--gray);
 }
 .notes-card{
     position: relative;
-    border: 1px solid var(--light-yellow);
+    /* border: 1px solid var(--light-yellow);
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 1rem; */
+    margin-top: 0.5rem;
 }
 .notes-card.inactive{
     border: none;
     padding: 0rem;
 }
+
+/* -----------------------GENERAL CSS ------------------------- */
 .close{
     position: absolute;
     top: 0rem;
@@ -217,21 +264,20 @@ footer li{
 .close.inactive{
     display:none;
 }
-.notes-text{
+
+/* -----------------------SUBTASK CARD ------------------------ */
+.subtask-card{
     margin-top: 0.5rem;
+    margin-left: 1.5rem;
 }
-.notes-text.inactive{
-    display: none;
+.subtask-lineone{
+    position: relative;
 }
-.notes-card a{
-    font-size: 1.15rem;
-    text-decoration: none;
-    color: var(--dark-yellow);
-    transition: 0.3s;
-    padding: 1.5rem;
-}
-.notes-card a:hover{
-    color: var(--gray);
+.subtask-linetwo{
+    margin-left: 2.5rem;
+    font-family: var(--logo-font);
+    font-style: italic;
+
 }
 
 /* ======================== MODALS ============================ */
@@ -261,10 +307,14 @@ footer li{
     padding: 2rem;
     border-radius: 1rem;
 }
+.task-modal.inactive{
+    display: none;
+}
 /* task name and description rows */
 .task-modal h3{
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
+    letter-spacing: 0.125rem;
 }
 .input-wrap{
     height: 2.25rem;
@@ -314,7 +364,7 @@ footer li{
     color: var(--dark-yellow);
     transition: 0.3s ease-in;
 }
-.notes-btn, .subtask-btn{
+.addnotes-btn, .addsubtask-btn{
     font-size: 1.5rem;
     padding: 0.5rem;
 }
@@ -407,16 +457,26 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     border-radius: 1rem;
     z-index: 2;
 }
-.header-notes{
-    display: flex;
-    align-items: center;
+.notes-modal.inactive{
+    display: none;
+}
+.header-notes h3{
+    letter-spacing: 0.125rem;
+}
+.nnm-body{
     color: var(--dark-yellow);
 }
-.header-notes .fi{
+.header-notes{
+    display: flex;
+}
+.header-notes h3{
+    font-size: 1.5rem;
+}
+.nnm-body .fi{
     font-size: 1.7rem;
     margin-right: 1rem;
 }
-textarea{
+.nnm-body textarea{
     padding: 1rem;
     width: 100%;
     box-sizing: border-box;
@@ -425,18 +485,17 @@ textarea{
     border-style: none;
     background-color: var(--gray);
     color: white;
+    white-space: pre-wrap;
 }
-textarea:focus{
+.nnm-body textarea:focus{
     border-style: none;
     outline: none;
 }
-.submission{
+.nnm-footer .submission{
     display: flex;
     justify-content: end;
 }
-.notes-modal.inactive{
-    display: none;
-}
+
 
 /* -------------------------SUBTASK MODAL------------------------ */
 .subtask-modal{
@@ -454,7 +513,10 @@ textarea:focus{
     flex-direction: column;
     justify-content: space-between;
 }
-.header-subtask{
+.subtask-modal.inactive{
+    display: none;
+}
+.nsm-header{
     display: flex;
     color: var(--dark-yellow);
     font-size: 1.15rem;
@@ -466,7 +528,7 @@ textarea:focus{
     margin-top: 0.3rem;
     margin-right: 1rem;
 }
-.add-new{
+.add-new-subtask{
     margin-top: 1rem;
     font-size: 1.5rem;
     color: var(--dark-yellow);
@@ -474,20 +536,65 @@ textarea:focus{
     cursor: pointer;
     width: 100%;
 }
-.add-new:hover{
+.add-new-subtask:hover{
     color: var(--pale-gray);
 }
 .subtask-modal.inactive{
     display: none;
 }
-.lineTwo .desc-name{
-    margin-left: 1.5rem;
-    margin-top: 0.5rem;
-    font-family: var(--roboto-font);
+.subtask-footer{
+    display: flex;
+    justify-content: end;
 }
 
-/* ----------------------- PROJECT MODAL------------------------ */
-.project-modal{
+/* ----------------------SUBTASK CHILD IN MODAL------------------- */
+.child-subtask-card{
+    position: relative;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.child-subtask-l1{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.left-card-l1{
+    display: flex;
+}
+.remove-child-subtask{
+    position: absolute;
+    font-family: var(--roboto-font);
+    font-size: 2rem;
+    top: -0.5rem;
+    right: 0;
+    padding: 0rem 1rem 0rem 100%;
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 2rem;
+}
+.remove-child-subtask:hover{
+    color: var(--gray);
+    background-color: rgba(255, 255, 244, 0.164);
+}
+.child-subtask-l2{
+    display: flex;
+}
+.child-subtask-l2 .desc-name{   
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    font-family: var(--logo-font);
+    font-style: italic;
+}
+.icstm-footer{
+    display: flex;
+    justify-content: end;
+}
+/* ---------------------ADD NEW CHILD SUBTASK MODAL------------------- */
+.input-child-subtask-modal{
+    height: 300px;
     width: 500px;
     position: absolute;
     top: 25%;
@@ -497,6 +604,54 @@ textarea:focus{
     color: var(--pale-gray);
     padding: 2rem;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.input-child-subtask-modal.inactive{
+    display: none;
+}
+.icstm-body h3{
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.125rem;
+}
+.icstm-footer{
+    margin-top: 1rem;
+}
+.icstm-footer .submit-subtask-btn{
+    width: 90px;
+}
+
+/* FOR ACTUAL RENDERING ON THE MAIN PAGE */
+/* .st-first-line:hover{
+    box-shadow: 0 4px 4px -3px var(--dark-yellow);
+}
+.st-first-line .st{
+    background-color: var(--dark-yellow);
+    top:20%; 
+} */
+
+
+/* ----------------------- PROJECT MODAL------------------------ */
+/* ADD THE MAKE JS PRETTY TO THIS MODAL */
+.project-modal{
+    width: 500px;
+    min-height: 250px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--gray);
+    color: var(--pale-gray);
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.project-modal-body{
+   
 }
 .project-modal-header{
     display: flex;
@@ -513,12 +668,14 @@ textarea:focus{
 .project-modal-header h3{
     margin-left: 1rem;
     font-size: 1.25rem;
+    letter-spacing: 0.125rem;
 }
 .project-modal label{
     font-size: 1rem;
 }
-.project-modal .submission{
-    margin-top: 2rem;
+.project-modal-footer{
+    display: flex;
+    justify-content: end;
 }
 .project-modal.inactive{
     display: none;
@@ -540,32 +697,7 @@ textarea:focus{
     font-size: 1.25rem;
     margin-bottom: 2rem;
 }
-/* ---------------------ADD NEW SUBTASK MODAL------------------- */
-.addnew-subtask-modal{
-    height: 300px;
-    width: 500px;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--gray);
-    color: var(--pale-gray);
-    padding: 2rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-.addnew-subtask-modal h3{
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-.addnew-subtask-modal-btm{
-    margin-top: 1rem;
-}
-.addnew-subtask-modal-btm .submit-subtask-btn{
-    width: 90px;
-}
+
 
 /* -------------------------MEDIA QUERY------------------------- */
 

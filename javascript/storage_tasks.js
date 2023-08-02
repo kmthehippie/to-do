@@ -1,0 +1,8 @@
+
+
+const taskStorage = {
+    tasks: [],
+    taskAdded: () => {
+
+    }
+}
