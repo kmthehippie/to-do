@@ -59,15 +59,21 @@
     <!-- OUTPUT Template for RENDER: NOT DONE TASK CARD -->
     
     <template id="done-task-template">
-        <div class="task-card">
+        <div class="done-task-card">
+            <div class="task-header">
+                <div class="category-name"></div>
+                <div class="main-task-duedate"></div>
+            </div>
             <div class="main-task">
                 <div class="left-card ">
                     <div class="checkbox-icon">
                         <span class="square">
                             <i class="fi fi-rr-square"></i>
                         </span>
-                        <span class="square-checked">
+                        <span class="square-checked ">
+                            <i class="fi fi-br-check"></i> 
                         </span>
+
                     </div>
                     <div class="task-name"> </div>
                 </div>
@@ -75,31 +81,42 @@
                     <span class="stars">
                     </span>
                 </div>
-                <div class="st"></div>
+                <div class="st "></div>
             </div>
+            <div class="main-task-desc"></div>
         </div>
     </template>
 
     <!-- OUTPUT Template for RENDER: DONE TASK CARD -->
     <template id="nd-task-template">
-        <div class="done-task-card">
+        <div class="task-card">
+            <div class="task-header">
+                <div class="category-name"></div>
+                <div class="main-task-duedate"></div>
+            </div>
             <div class="main-task">
                 <div class="left-card ">
                     <div class="checkbox-icon">
                         <span class="square">
                             <i class="fi fi-rr-square"></i>
                         </span>
-                        <span class="square-checked">
+                        <span class="square-checked inactive">
+                            <i class="fi fi-br-check"></i> 
                         </span>
+
                     </div>
                     <div class="task-name"> </div>
                 </div>
                 <div class="right-card">
                     <span class="stars">
+                        <i class="one star fi fi-rr-star"></i>
+                        <i class="two star fi fi-rr-star"></i>
+                        <i class="three star fi fi-rr-star"></i>
                     </span>
-                </div>
-                <div class="st"></div>
+                </div>            
+                <div class="st inactive"></div>
             </div>
+            <div class="main-task-desc"></div>
         </div>
     </template>
     
@@ -109,9 +126,9 @@
     <!-- to add strikethrough, use div class st (need to add whole div or remove whole div) -->
     <!-- add subtask and notes as sibling to task and child to task-card -->
     
-    <!-- OUTPUT Template for RENDER: Notes in task (Don't show unless click more...inactive for notes-card, close-notes, notes-text) push text into notes-text-->
+    <!-- OUTPUT Template for RENDER: Notes in task (Don't show taskCardunless click more...inactive for notes-card, close-notes, notes-text) push text into notes-text-->
     <template id="notes-template">
-        <div class="notes-card inactive">
+        <div class="notes-card ">
             <a href="">Notes...</a>
         </div>
     </template>
@@ -119,6 +136,7 @@
     <!-- OUTPUT Template for RENDER: Notes modal notes pop out -->
     <template id="notes-template-modal">
         <div class="notes-card-modal">
+            <div class="close ">x</div>
             <div class="ncm-body">
                 <div class="ncm-header">
                     <div class="notes-icon"><i class="fi fi-sr-memo-pad"></i></div>
@@ -135,11 +153,12 @@
             </div>
         </div>
     </template>
+
     <!-- OUTPUT Template for a RENDER: Subtask in task-->
     <template id="subtask-template">
         <div class="subtask-card">
             <div class="subtask-lineone">
-                <div class="left-card subtask">
+               
                     <div class="checkbox-icon">
                         <span class="square">
                             <i class="fi fi-rr-square"></i>
@@ -148,13 +167,9 @@
                             <i class="fi fi-br-check"></i> 
                         </span>
                     </div>
-                    <div class="task-name">
+                    <div class="subtask-name">
                     </div>
-                </div>
-                <div class="right-card subtask">
-                    <span class="stars inactive">
-                    </span>
-                </div>
+
                 <div class="st inactive"></div>
             </div>
             <div class="subtask-linetwo">
@@ -217,7 +232,7 @@
                 </div>
                 <div class="project-submission-row">
                     <div class="project-name">
-                        <select name="project" id="project" class="input-field">
+                        <select name="project" id="project-select" class="input-field project-select">
                             <option value="default" >Default</option>
                             <option value="new" id ="addnew-project">+  New</option>
                         </select>

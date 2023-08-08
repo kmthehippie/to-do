@@ -33,11 +33,15 @@ width: 100vw;
 height: 100vh;
 background-color:var(--palest-gray);
 }
+.main-content{
+    width: 100vw;
+}
 
 /* ======================= HEADER ============================= */
 header{
    width: 100%;
-   border-bottom: 1px solid var(--gray)
+   border-bottom: 1px solid var(--gray);
+   margin-bottom: 1rem;
 }
 .header-content{
     display: flex;
@@ -116,6 +120,19 @@ nav{
     color: var(--light-yellow);
     background-color: var(--gray);
 }
+/* ======================= MAINCONTENT ======================== */
+.all-page.inactive{
+    display: none;
+}
+.today-page.inactive{
+    display: none;
+}
+.project-page.inactive{
+    display: none;
+}
+
+
+
 
 /* ======================= FOOTER ============================= */
 footer{
@@ -169,25 +186,48 @@ footer li{
 .task-card{
     border: 1px solid var(--dark-yellow);
     padding: 1rem;
+    margin-bottom: 1rem;
     margin: 0rem 1rem;
     border-radius: 1rem;
     position: relative;
     background-color: white;
-    box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.678);
     margin-bottom: 1rem;
+    box-shadow: 5px 5px 10px rgba(104, 104, 104, 0.678);
+}
+.task-header{
+    display: flex;
+    justify-self: center;
+}
+.category-name{
+    font-family: var(--logo-font);
+    background-color: #ffee32;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+
 }
 .main-task{
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+}
+.main-task-desc{
+    margin-left: 2.5rem;
+    font-size: 0.8rem;
+    font-family: var(--roboto-font);
+    font-style: italic;
+}
+.main-task-duedate{
+    margin-left: 1rem;
+    font-family: var(--logo-font);
+    font-size: 1.2rem;
 }
 /* strikethrough */
 .st{
     background-color: var(--black);
     width: 100%;
     height: 2px;
-    z-index: 100;
     position: absolute;
     top: 45%;
 }
@@ -212,6 +252,8 @@ footer li{
 .stars {
     color: var(--dark-yellow);
     cursor: pointer;
+    font-size: 1.25rem;
+    display: flex;
 }
 .task-name{
     font-family: var(--roboto-font);
@@ -231,6 +273,7 @@ footer li{
     color: var(--dark-yellow);
     transition: 0.3s;
     padding: 1.5rem;
+    font-family: var(--logo-font);
 }
 .notes-card a:hover{
     color: var(--gray);
@@ -241,10 +284,58 @@ footer li{
     border-radius: 1rem;
     padding: 1rem; */
     margin-top: 0.5rem;
+    margin-left: 1rem;
 }
 .notes-card.inactive{
     border: none;
     padding: 0rem;
+}
+/* ------------------NOTES CARD MODAL ------------------------- */
+
+.notes-card-modal{
+        width: 500px;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--gray);
+        color: var(--pale-gray);
+        padding: 2rem;
+        border-radius: 1rem;
+ 
+}
+.ncm-header{
+    display: flex;
+    color: var(--dark-yellow);
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.ncm-header h3{
+    margin-left: 1rem;
+    font-size: 1.25rem;
+}
+.notes-card-modal.inactive{
+    display: none;
+}
+
+.ncm-text textarea{
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    resize: none;
+    border-style: none;
+    background-color: var(--gray);
+    color: white;
+    white-space: pre-wrap;
+}
+.ncm-text textarea:focus{
+    border-style: none;
+    outline: none;
+}
+.ncm-footer .submission{
+    display: flex;
+    justify-content: end;
 }
 
 /* -----------------------GENERAL CSS ------------------------- */
@@ -267,17 +358,31 @@ footer li{
 
 /* -----------------------SUBTASK CARD ------------------------ */
 .subtask-card{
+    margin-left: 2.5rem;
     margin-top: 0.5rem;
-    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 1rem;
+
 }
+
 .subtask-lineone{
+    display: flex;
     position: relative;
+    cursor: pointer;
+    
+}
+.subtask-name{
+    margin-left: 1rem;
+    font-family: var(--roboto-font);
 }
 .subtask-linetwo{
-    margin-left: 2.5rem;
-    font-family: var(--logo-font);
+    margin-left: 2rem;
+    font-size: 0.8rem;
     font-style: italic;
+}
 
+.subtask-desc{
+    font-family: var(--roboto-font);
 }
 
 /* ======================== MODALS ============================ */
@@ -377,9 +482,7 @@ footer li{
     flex-direction: column;
     align-items: center;
 }
-.stars{
-    font-size: 1.25rem;
-}
+
 .due-date{
     margin-top: 0.5rem;
     appearance: none;
@@ -650,9 +753,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     flex-direction: column;
     justify-content: space-between;
 }
-.project-modal-body{
-   
-}
+
 .project-modal-header{
     display: flex;
     color: var(--dark-yellow);

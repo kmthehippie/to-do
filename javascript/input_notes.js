@@ -1,3 +1,4 @@
+import { closeCancelBtn, escapeKey } from "./general.js";
 
 export const inputNotesModal = {
     outputNotes: "",
@@ -11,6 +12,7 @@ export const inputNotesModal = {
             let div = template.content.cloneNode(true);
             div.querySelector(".add-notes-btn").addEventListener("click", inputNotesModal.notesAdded)
             modal.appendChild(div);
+            closeCancelBtn();
         }
         
     },
