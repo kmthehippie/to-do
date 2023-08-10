@@ -3,10 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do</title>
-    <script src="main.js" defer></script>
+    <title>TO DO DODODODODOODODODO COME ON</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="main.js" defer></script>
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
+    <header>
+        <div class="header-content">
+                <div class="logo">
+                    <div class="logo-img">
+                        <i class='fi fi-sr-rectangle-list'></i>
+                    </div>
+                    <div class="logo-text">
+                        <a href="">DoJustDo</a>
+                    </div>
+                </div>
+                <nav>
+                    <div class="nav all">  ALL  </div>
+                    <div class="nav today">TODAY</div>
+                    <div class="nav projects">PROJECT</div>
+                </nav>
+                <div class="right-header-div">
+                    <div class="nav-add-task">+</div>
+                    <div class="profile">
+                        <i class="fi fi-sr-user"></i>
+                    </div>
+                </div>
+                
+        </div>
+    </header>
+
+    <div class="main-content">
+        <!-- Filter arrangements -> nav buttons here -->
+        <div class="all-page"></div>
+        <div class="today-page"></div>
+        <div class="project-page"></div>
+        <!-- All pop-ups and modals go here -->
+        <div class="modal inactive">
+        </div>
+
+    <footer>
+        <ul>
+            <li>I can do this!!! --KM</li>
+            <li></li>
+        </ul>
+    </footer>
+
+    <!-- ------------------------- render on page -------------------- -->
+    <!-- OUTPUT Template for RENDER: NOT DONE TASK CARD -->
     
+    <template id="done-task-template">
+        <div class="done-task-card">
+            <div class="task-header">
+                <div class="task-header-left">
+                    <div class="category-name"></div>
+                    <div class="main-task-duedate"></div>
+                </div>
+
+                <div class="task-header-right"><i class="fi fi-sr-trash-xmark"></i></div>
+            </div>
+            <div class="main-task">
+                <div class="left-card ">
+                    <div class="checkbox-icon">
+                        <span class="square">
+                            <i class="fi fi-rr-square"></i>
+                        </span>
+                        <span class="square-checked ">
+                            <i class="fi fi-br-check"></i> 
+                        </span>
+
+                    </div>
+                    <div class="task-name"> </div>
+                </div>
+                <div class="right-card">
+                    <span class="stars">
+                    </span>
+                </div>
+                <div class="st "></div>
+            </div>
+            <div class="main-task-desc"></div>
+        </div>
+    </template>
+
+    <!-- OUTPUT Template for RENDER: DONE TASK CARD -->
+    <template id="nd-task-template">
+        <div class="task-card">
+            <div class="task-header">
+                <div class="category-name"></div>
+                <div class="main-task-duedate"></div>
+            </div>
+            <div class="main-task">
+                <div class="left-card ">
+                    <div class="checkbox-icon">
+                        <span class="square">
+                            <i class="fi fi-rr-square"></i>
+                        </span>
+                        <span class="square-checked inactive">
+                            <i class="fi fi-br-check"></i> 
+                        </span>
+
+                    </div>
+                    <div class="task-name"> </div>
+                </div>
+                <div class="right-card">
+                    <span class="stars">
+                        <i class="one star fi fi-rr-star"></i>
+                        <i class="two star fi fi-rr-star"></i>
+                        <i class="three star fi fi-rr-star"></i>
+                    </span>
+                </div>            
+                <div class="st inactive"></div>
+            </div>
+            <div class="main-task-desc"></div>
+        </div>
+    </template>
+    
+    <!-- to add empty stars, use <i class="fi fi-rr-star"></i> -->
+    <!-- to add full stars, use <i class="fi fi-sr-star"></i> -->
+    <!-- to add checked, use <i class="fi fi-br-check"></i> -->
+    <!-- to add strikethrough, use div class st (need to add whole div or remove whole div) -->
+    <!-- add subtask and notes as sibling to task and child to task-card -->
+    
+    <!-- OUTPUT Template for RENDER: NOT DONE TASK CARD -->
+    <template id="project-task-template">
+        <div class="project-div-ptt">
+        </div>
+    </template>
+
+
+    <!-- OUTPUT Template for RENDER: Notes in task (Don't show taskCardunless click more...inactive for notes-card, close-notes, notes-text) push text into notes-text-->
+    <template id="notes-template">
+        <div class="notes-card ">
+            <a href="">Notes...</a>
+        </div>
+    </template>
+
+    <!-- OUTPUT Template for RENDER: Notes modal notes pop out -->
+    <template id="notes-template-modal">
+        <div class="notes-card-modal">
+            <div class="close ">x</div>
+            <div class="ncm-body">
+                <div class="ncm-header">
+                    <div class="notes-icon"><i class="fi fi-sr-memo-pad"></i></div>
+                    <h3>Notes</h3>
+                </div>
+                <div class="ncm-text"></div>
+                <!-- THIS NOTES CAN BE EDITED AND THEN SAVE FOR UPDATE -->
+            </div>
+            <div class="ncm-footer">
+                <div class="submission">
+                    <button class="cancel notes">CANCEL</button>
+                    <button class="update-notes notes" value="add-notes">UPDATE</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- OUTPUT Template for a RENDER: Subtask in task-->
+    <template id="subtask-template">
+        <div class="subtask-card">
+            <div class="subtask-lineone">
+               
+                    <div class="checkbox-icon">
+                        <span class="square">
+                            <i class="fi fi-rr-square"></i>
+                        </span>
+                        <span class="square-checked inactive">
+                            <i class="fi fi-br-check"></i> 
+                        </span>
+                    </div>
+                    <div class="subtask-name">
+                    </div>
+
+                <div class="st inactive"></div>
+            </div>
+            <div class="subtask-linetwo">
+                <div class="subtask-desc">
+                </div>
+            </div>
+        </div>
+    </template>
+
+   <!---------------------------------------  ------------------------------>
+    <!-- Template for INPUT: task-modal-->
+    <template id="newtask-modal-template">
+        <div class="task-modal">
+            <form>
+                <div class="close ">x</div>
+                <h3>NEW TASK</h3>
+                <div class="input-wrap">
+                    <input 
+                    type="text"
+                    id="task-name-input"
+                    class="input-field"
+                    required/>
+                    <label for="task-name-input">
+                        Task Name
+                    </label>
+                </div>
+                <div class="input-wrap">
+                    <input 
+                    type="textarea"
+                    id="desc-input"
+                    class="input-field">
+                    <label for="desc-input">
+                        Description
+                    </label>
+                </div>
+                <div class="duedate-row">
+                    <div class="due-date-div">
+                        <input 
+                        type="date"
+                        id="due-date-input"
+                        class="input-field due-date">
+                        <i class="fi fi-rr-calendar-days"></i>
+                    </div>
+                    <div class="priority-btns-div">
+                        <div class="addnotes-btn">
+                            <i class="fi fi-sr-memo-pad"></i>
+                        </div>
+                        <div class="addsubtask-btn">
+                            <i class='fi fi-sr-rectangle-list'></i>
+                        </div>
+                        <div class="priority-input">
+                            <span>Priority</span>
+                            <span class="stars">
+                                <i class="one star fi fi-rr-star"></i>
+                                <i class="two star fi fi-rr-star"></i>
+                                <i class="three star fi fi-rr-star"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-submission-row">
+                    <div class="project-name">
+                        <select name="project" id="project-select" class="input-field project-select">
+                            <option value="default" >Default</option>
+                            <option value="new" id ="addnew-project">+  New</option>
+                        </select>
+                    </div>
+                    <div class="submission">
+                        <button class="cancel ">CANCEL</button>
+                        <button class="add-task-btn">ADD TASK</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </template>
+    <!-- Template for INPUT: notes-modal nnm = new notes modal-->
+    <template id="notes-modal-template">
+        <div class="notes-modal ">
+            <div class="close ">x</div>
+            <div class="nnm-body">
+                <div class="header-notes">
+                    <div class="notes-icon">
+                        <i class="fi fi-sr-memo-pad"></i>
+                    </div>
+                    <h3>NOTES</h3>
+                </div>
+                <textarea name="notes" id="notes" cols="30" rows="6" placeholder="Enter your notes here..."></textarea>
+            </div>
+            <div class="nnm-footer">
+                <div class="submission">
+                    <button class="cancel notes">CANCEL</button>
+                    <!-- ++++change the class and id for this++++ -->
+                    <button class="add-notes-btn notes" value="add-notes">ADD NOTES</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template for INPUT: main-subtask-modal nsm = new subtask modal-->
+    <template id="main-subtask-modal-template">
+        <div class="subtask-modal">
+            <div class="close ">x</div>
+            <div class="nsm-body">
+                <div class="nsm-header">
+                    <div class="subtask-icon">
+                        <i class='fi fi-sr-rectangle-list'></i>
+                    </div>
+                    <h3>Subtask</h3>
+                </div>
+                <div class="subtask-generated"></div>
+                <div class="add-new-subtask"> + </div>
+            </div>
+            <div class="subtask-footer">
+                <div class="submission">
+                    <button class="cancel subtask">CANCEL</button>
+                <!-- ADD A NEW ID FOR THIS BUTTON TO GET FINALISED INFO -->
+                    <button id="subtask-final-added" class="add-subtask subtask">ADD SUBTASK</button>
+                </div>
+            </div>
+        </div>
+    </template>
+     <!-- Template for NEW SUBTASK icstm = input child subtask modal-->
+     <template id="input-child-subtask-template">
+        <div class="input-child-subtask-modal">
+                <div class="icstm-body">
+                    <div class="close ">x</div>
+                    <h3>NEW TASK</h3>
+                    <form>
+                    <div class="input-wrap">
+                        <input 
+                        type="text"
+                        id="subtask-name-input"
+                        class="input-field"
+                        required/>
+                        <label for="task-name-input">
+                            Task Name
+                        </label>
+                    </div>
+                    <div class="input-wrap">
+                        <input 
+                        type="textarea"
+                        id="subtask-desc-input"
+                        class="input-field">
+                        <label for="desc-input">
+                            Description
+                        </label>
+                    </div>
+                    </form>
+                </div>
+                
+                <div class="icstm-footer">
+                    <div class="submission">
+                        <button class="cancel ">CANCEL</button>
+                        <!-- add id to grab the data from this subtask -->
+                        <button class="submit-subtask-btn">ADD</button>
+                    </div>
+                </div>
+
+        </div>
+    </template>
+   <!-- Template for SUBTASK INSIDE SUBTASK -->
+   <template id="child-subtask-modal-template">
+    <div class="child-subtask-card">
+        <div class="child-subtask-l1">
+            <div class="left-card-l1">
+                <div class="checkbox-icon">
+                    <span class="square">
+                        <i class="fi fi-rr-square"></i>
+                    </span>
+                </div>
+                <div class="task-name"></div>
+            </div>
+           <!-- <div class="right-card-l1"> -->
+            <div class="remove-child-subtask">
+                -
+            </div>
+           <!-- </div> -->
+        </div>
+        <div class="child-subtask-l2">
+            <div class="desc-name"></div>
+        </div>
+    </div>
+    </template>
+    <!-- Template for INPUT: NEW project-modal -->
+    <template id="project-modal-template">
+        <div class="project-modal">
+            <div class="close ">x</div>
+            <div class="project-modal-body">
+                <div class="project-modal-header">
+                    <h2>+</h2>
+                    <h3>NEW PROJECT</h3>
+                </div>
+                <form>
+                    <div class="input-wrap">
+                        <input 
+                        type="text"
+                        id="project-name"
+                        class="input-field"
+                        required/>
+                        <label for="project-name">
+                            Project Name
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="project-modal-footer">
+                <div class="submission">
+                    <button class="cancel-btn">CANCEL</button>
+                    <!-- add id for this submit button to create new project and save the option to local storage -->
+                    <button class="new-project">ADD PROJECT</button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <!-- Template for CANCEL ?add this function later. let's skip for now-->
+    <template id="cancel template">
+    <div class="cancel-modal">
+        <div class="close ">x</div>
+        <div class="cancel-text">
+            Are you sure you would like to discard your changes?
+        </div>
+        <div class="submission">
+            <button class="cancel-discard">CANCEL</button>
+            <button type="submit" class="confirm-discard">CONFIRM</button>
+        </div>
+    </div>
+    </template>
+   
+
 </body>
 </html>

@@ -2,7 +2,7 @@
   "name": "to-do",
   "version": "1.0.0",
   "description": "To Do",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
     "webpack-cli": "^5.1.4"
   }
 }
