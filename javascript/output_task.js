@@ -1,8 +1,9 @@
 import { taskStorage } from "./storage_tasks.js";
-import { renderPriority, makeDatePretty, removeDup, taskRender, sorting, sortProject, sortDate} from "./general.js"
+import { removeDup, taskRender, sorting, sortProject, sortDate} from "./general.js"
 
 export const outputTask = {
     existingTask: [],
+    tempExistingTask: [],
     existingCategories: [],
     render: () => {
         let template = document.getElementById("nd-task-template");
@@ -17,7 +18,8 @@ export const outputTask = {
 
         let allNav = document.querySelector(".all");
         allNav.addEventListener("click", ()=>{
-            outputTask.existingTask = sorting(outputTask.existingTask);
+            outputTask.tempExistingTask = outputTask.existingTask
+            outputTask.tempExistingTask = sorting(outputTask.existingTask);
             projectDiv.classList.add("inactive")
             todayDiv.classList.add("inactive")
 
@@ -27,7 +29,7 @@ export const outputTask = {
                 if (t !== null){
                 t.forEach(task => {
                     outputTask.existingCategories.push(task.taskCategory);
-                    outputTask.existingCategories = removeDup(outputTask.existingCategories)
+                    outputTask.existingCategories = removeDup(outputTask.tempExistingTask)
                     if (task.taskDone === false) {
                         let div = template.content.cloneNode(true);
                         taskRender(div, task);
@@ -45,61 +47,63 @@ export const outputTask = {
         })
         let todayNav = document.querySelector(".today");
         todayNav.addEventListener("click", ()=>{
-            outputTask.existingTask = sortDate(outputTask.existingTask);
+            outputTask.tempExistingTask = outputTask.existingTask;
+            outputTask.tempExistingTask = sortDate(outputTask.existingTask);
             projectDiv.classList.add("inactive")
             allDiv.classList.add("inactive")
-
+            todayDiv.classList.remove("inactive")
             if (todayDiv.childNodes.length === 0){
-                todayDiv.classList.remove("inactive")
-                let t = outputTask.existingTask;
+                let t = outputTask.tempExistingTask;
                 if (t !== null){
                 t.forEach(task => {
-                    outputTask.existingCategories.push(task.taskCategory);
-                    outputTask.existingCategories = removeDup(outputTask.existingCategories)
                     if (task.taskDone === false) {
                         let div = template.content.cloneNode(true);
                         taskRender(div, task);
-    
                         todayDiv.appendChild(div)
                     } 
-                    else if (task.taskDone === true) {
-                        let div = templateDone.content.cloneNode(true);
-                        taskRender(div, task)
-                        todayDiv.appendChild(div)
-                    }
                 })}
-            } else {
-                todayDiv.classList.remove("inactive")
-            }
-            
+            } 
             
         })
         let projectNav = document.querySelector(".projects");
         projectNav.addEventListener("click", ()=>{
-            outputTask.existingTask = sortProject(outputTask.existingTask);
+            outputTask.tempExistingTask = outputTask.existingTask;
+            outputTask.tempExistingTask = sortProject(outputTask.tempExistingTask);
             allDiv.classList.add("inactive")
             todayDiv.classList.add("inactive")
-
+       
             if (projectDiv.childNodes.length === 0){
                 projectDiv.classList.remove("inactive")
-                let t = outputTask.existingTask;
+                let t = outputTask.tempExistingTask;
                 if (t !== null){
                 t.forEach(task => {
+                    if(task.taskDone === false){
                     outputTask.existingCategories.push(task.taskCategory);
+                    console.log(task.taskCategory);
+                    console.log(removeDup(outputTask.existingCategories));
                     outputTask.existingCategories = removeDup(outputTask.existingCategories)
-                    if (task.taskDone === false) {
-                        let div = template.content.cloneNode(true);
-                        taskRender(div, task);
-                        
-                        projectDiv.appendChild(div)
-                    } 
-                    else if (task.taskDone === true) {
-                        let div = templateDone.content.cloneNode(true);
-                        taskRender(div, task)
-                        
-                        projectDiv.appendChild(div)
+                    console.log(outputTask.existingCategories);
                     }
                 })}
+                outputTask.existingCategories.forEach(cat => {
+                    const ptt = document.getElementById("project-task-template");
+                    let pDiv = ptt.content.cloneNode(true);
+                    const projectPg = document.querySelector(".project-page");
+                    let proDiv = pDiv.querySelector(".project-div-ptt")
+                    let proName = document.createElement("h3");
+                    proName.setAttribute("id", "project-name-ptt");
+                    proName.textContent = cat;
+                    proDiv.appendChild(proName)
+                    projectPg.appendChild(pDiv);
+                    t.forEach(task => {
+                        if(task.taskCategory === cat && task.taskDone === false) {
+                            let div = template.content.cloneNode(true);
+                            taskRender(div, task);
+                            proDiv.appendChild(div)
+                        } 
+                    })
+                })
+                
             } else {
                 projectDiv.classList.remove("inactive")
             }
@@ -145,7 +149,6 @@ export const outputTask = {
         let parent = e.target.closest(".subtask-lineone");
         let st = parent.querySelector(".st");
         let check = parent.querySelector(".square-checked");
-        console.log(st);
         if (st.classList[1] === "inactive") {
             st.classList.remove("inactive")
             check.classList.remove("inactive")
@@ -153,20 +156,21 @@ export const outputTask = {
             st.classList.add("inactive")
             check.classList.add("inactive")
         }
-        console.log(e.target);
     },
     taskChanged: (e) => {
-        let parent = e.target.closest(".main-task");
-        let st = parent.querySelector(".st");
-        let check = parent.querySelector(".square-checked");
-        console.log(st);
-        if (st.classList[1] === "inactive") {
-            st.classList.remove("inactive")
-            check.classList.remove("inactive")
-        }else if (st.classList[1] !== "inactive") {
-            st.classList.add("inactive")
-            check.classList.add("inactive")
+        if (e.target.classList[0] === "fi")
+        {return}
+        else {
+            let parent = e.target.closest(".main-task");
+            let st = parent.querySelector(".st");
+            let check = parent.querySelector(".square-checked");
+            if (st.classList[1] === "inactive") {
+                st.classList.remove("inactive")
+                check.classList.remove("inactive")
+            }else if (st.classList[1] !== "inactive") {
+                st.classList.add("inactive")
+                check.classList.add("inactive")
+            }
         }
-        console.log(e.target);
     }
 }

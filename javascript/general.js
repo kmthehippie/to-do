@@ -18,6 +18,7 @@ export const makeInputPretty = function() {
 
 // Stars Function For taskModal
 export const starsArr = (prio) => {
+    console.log(prio);
     const stars = document.querySelectorAll(".star");
     stars.forEach((star) =>{
         star.addEventListener("click", ()=>{
@@ -110,7 +111,7 @@ export const closeFn = function () {
         modal.removeChild(divToRemove);
         modal.classList.add("inactive");
     }else{
-        modal.removeChild(divToRemove);
+        modal.remove(divToRemove);
     }
 }
 
@@ -150,18 +151,20 @@ export const subtaskDescFix = function(subtaskDesc){
 //remove duplicates
 
 export const removeDup = function(arr) {
-    return arr.filter((item, index) => arr.indexOf(item) === index);
+    let a = arr.filter((item, index) => arr.indexOf(item) === index);  
+    return a
 }
 
 //main task render
 
 export const taskRender = function(div, task) {
-    div.querySelector(".main-task").addEventListener("click", function(e){
+    div.querySelector(".left-card").addEventListener("click", function(e){
         console.log(e.target);
         if (task.taskDone === true){ task.taskDone = false}
         else if (task.taskDone === false){ task.taskDone = true}
         outputTask.taskChanged(e)
         console.log(task.taskDone);
+        console.log(outputTask.existingTask);
         taskStorage.fromOpStorageAdded();
         location.reload()
     })
@@ -197,6 +200,13 @@ export const taskRender = function(div, task) {
 
     if (taskCard === null){
         taskCard = div.querySelector(".done-task-card")
+        div.querySelector(".task-header-right").addEventListener("click", (e) =>{
+            e.target.closest(".done-task-card").remove();
+            let index = outputTask.existingTask.indexOf(task);
+            outputTask.existingTask.splice(index, 1);
+            console.log(outputTask.existingTask);
+            taskStorage.fromOpStorageAdded();
+        })
     }
    
 
@@ -210,6 +220,7 @@ export const taskRender = function(div, task) {
             let modal = document.querySelector(".modal");
             modal.classList.remove("inactive");
             let notesModalDiv = notesModalTemplate.content.cloneNode(true);
+            let ncmDiv = notesModalDiv.querySelector(".notes-card-modal")
             let ncmText = notesModalDiv.querySelector(".ncm-text");
             let textArea = document.createElement("textarea");
             ncmText.appendChild(textArea)
@@ -222,7 +233,7 @@ export const taskRender = function(div, task) {
                 task.taskNotes = textArea.value
                 taskStorage.fromOpStorageAdded();
                 modal.classList.add("inactive");
-                notesModalDiv.classList.add("inactive")
+                ncmDiv.remove()
             })
             
             notesModalDiv.querySelector(".close").addEventListener("click", closeFn)
@@ -252,8 +263,8 @@ export const taskRender = function(div, task) {
             subtaskDiv.querySelector(".subtask-lineone").addEventListener("click", function(e){
                 if (s.subtaskDone === true){ s.subtaskDone = false}
                 else if (s.subtaskDone === false){ s.subtaskDone = true}
-                console.log(s.subtaskDone);
                 outputTask.subtaskChanged(e);
+                console.log(outputTask.existingTask);
                 taskStorage.fromOpStorageAdded();
             });
             taskCard.appendChild(subtaskDiv);
@@ -264,16 +275,18 @@ export const taskRender = function(div, task) {
 
 //Adding Categories to the task modal
 export const catAdd = function(item) {
+    console.log(item);
+    if (item === "Default") {} else {
     let value = item.toLowerCase().split(" ").join("-");
     let newOption = document.createElement("option");
     let optionText = document.createTextNode(item);
 
     newOption.appendChild(optionText)
     newOption.setAttribute("value", value)            
-    newOption.setAttribute("selected", "selected")
     let select = document.querySelector("select");
-    let addBtn = document.getElementById("addnew-project")
-    select.insertBefore(newOption, addBtn)
+    let addBtn = document.getElementById("addnew-project");
+    select.insertBefore(newOption, addBtn);
+    }   
 }
 
 

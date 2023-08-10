@@ -11,7 +11,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
     <header>
@@ -61,8 +61,12 @@
     <template id="done-task-template">
         <div class="done-task-card">
             <div class="task-header">
-                <div class="category-name"></div>
-                <div class="main-task-duedate"></div>
+                <div class="task-header-left">
+                    <div class="category-name"></div>
+                    <div class="main-task-duedate"></div>
+                </div>
+
+                <div class="task-header-right"><i class="fi fi-sr-trash-xmark"></i></div>
             </div>
             <div class="main-task">
                 <div class="left-card ">
@@ -126,6 +130,13 @@
     <!-- to add strikethrough, use div class st (need to add whole div or remove whole div) -->
     <!-- add subtask and notes as sibling to task and child to task-card -->
     
+    <!-- OUTPUT Template for RENDER: NOT DONE TASK CARD -->
+    <template id="project-task-template">
+        <div class="project-div-ptt">
+        </div>
+    </template>
+
+
     <!-- OUTPUT Template for RENDER: Notes in task (Don't show taskCardunless click more...inactive for notes-card, close-notes, notes-text) push text into notes-text-->
     <template id="notes-template">
         <div class="notes-card ">

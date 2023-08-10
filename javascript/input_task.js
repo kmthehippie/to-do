@@ -21,14 +21,17 @@ export const inputTaskModal = {
         div.querySelector(".add-task-btn").addEventListener("click", inputTaskModal.taskAdded);
         div.querySelector(".addnotes-btn").addEventListener("click", inputNotesModal.render);    
         div.querySelector(".addsubtask-btn").addEventListener("click", inputSubtaskModal.render);
+        inputTaskModal.category = "Default";
         div.getElementById("project-select").addEventListener("change", function() {
             if(this.value === "new"){
                 categories.render();
-            } else {
+            } else if (this.value !== "new"){
+                console.log(this.value);
                 inputTaskModal.category = fixCatText(this.value)
-            }
+            } 
             // console.log(inputTaskModal.category);
         });
+        
         modal.appendChild(div);
         categories.oldCatAdded();
         starsArr(inputTaskModal.priority);

@@ -30,7 +30,7 @@ flex-direction: column;
 align-items: center;
 color: var(--gray);
 width: 100vw;
-height: 100vh;
+height: 110vh;
 background-color:var(--palest-gray);
 }
 .main-content{
@@ -131,8 +131,26 @@ nav{
     display: none;
 }
 
-
-
+/* =====================  PROJECT PAGE ======================== */
+#project-name-ptt{
+    color: var(--gray);
+    margin-bottom: 0.75rem;
+}
+.project-div-ptt{
+    background-color: var(--pale-gray);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    margin-right: 1em;
+    box-shadow: 5px 5px 10px rgba(104, 104, 104, 0.678);
+}
+.project-div-ptt .task-card{
+    width: 95%;
+    margin-right:1rem;
+}
 
 /* ======================= FOOTER ============================= */
 footer{
@@ -173,6 +191,7 @@ footer li{
     border: 1px solid var(--dark-yellow);
     padding: 1rem;
     margin: 0rem 1rem;
+    margin-right: 2rem;
     border-radius: 1rem;
     position: relative;
     background-color: rgb(190, 190, 190);
@@ -187,16 +206,33 @@ footer li{
     border: 1px solid var(--dark-yellow);
     padding: 1rem;
     margin-bottom: 1rem;
-    margin: 0rem 1rem;
+    margin-left: 1rem;
+    margin-right: 2rem;
     border-radius: 1rem;
     position: relative;
     background-color: white;
-    margin-bottom: 1rem;
     box-shadow: 5px 5px 10px rgba(104, 104, 104, 0.678);
 }
 .task-header{
     display: flex;
     justify-self: center;
+}
+.done-task-card .task-header{
+    display: flex;
+    justify-content: space-between;
+}
+.task-header-left{
+    display: flex;
+}
+.task-header-right i{
+    padding-left: 1rem;
+    color: var(--light-yellow);
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.25rem;
+}
+.task-header-right i:hover{
+    color: var(--black);
 }
 .category-name{
     font-family: var(--logo-font);
